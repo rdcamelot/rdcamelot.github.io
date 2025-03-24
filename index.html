@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 浏览器标签上显示的网站标题 -->
+    <title>rdcamelot个人主页</title>
+    <!-- 网站介绍 -->
+    <meta name="description" content="">
+    <!-- 网站关键字 -->
+    <meta name="keywords" content="rdcamelot">
+    <!-- 浏览器标签上显示的图标 -->
+    <!-- <link rel="icon" type="image/ico" href="//sdn.geekzu.org/avatar/4cc893d113dd74ceca73f9863f2c5446/"> -->
+    <!-- 浏览器标签上显示的图标 -->
+    <link rel="icon" type="image/png" href="./static/images/icon.jpg">
+    <!-- 样式文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" href="./static/style.css?v=1.2.0">
+    <link rel="stylesheet" href="./static/APlayer-1.10.1/dist/APlayer.min.css">
+
+    <!-- 自定义设置 -->
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-image: url("./static/images/marlin.png");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            /* 使用弹性布局确保内容垂直居中 */
+            display: flex;
+            align-items: center; /* 垂直居中 */
+            justify-content: center; /* 水平居中 */
+            min-height: 100vh;
+        }
+
+        .photo-bg {
+            background-image: url("./static/images/3.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .kz-video {
+            display: none; 
+        }
+        
+        /* 调整卡片透明度和阴影 */
+        .card {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+            height: 100%;  /* 确保卡片填满父容器高度 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 内容垂直居中 */
+            padding: 1.5rem; /* 减小内边距 */
+        }
+        
+        /* 移除顶部内边距，让卡片真正居中 */
+        #main.container {
+            width: 100%;
+            height: 100vh; /* 使用视口高度单位 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0; /* 移除内边距 */
+            margin: 0; /* 移除外边距 */
+        }
+        
+        /* 修改卡片样式 - 缩小并添加圆角 */
+        .my-card {
+            max-width: 67%; /* 从80%减小到70% */
+            width: 67%; /* 从80%减小到70% */
+            height: auto;
+            max-height: 65vh; /* 从80vh减小到75vh */
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            border-radius: 12px; /* 增加圆角 */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1); /* 更精致的阴影 */
+            overflow: hidden; /* 确保内部元素不超出圆角 */
+        }
+        
+        /* 为较小屏幕添加媒体查询 */
+        @media (max-height: 700px) {
+            .my-card {
+                max-height: 85vh;
+            }
+        }
+        
+        /* 调整内部元素排版 */
+        h1 {
+            margin-top: 0; /* 移除标题顶部边距 */
+            font-size: 1.8rem; /* 减小标题字体大小 */
+        }
+        
+        /* 确保底部元素有足够间距 */
+        .social {
+            margin-top: auto; /* 将社交图标推到底部 */
+            padding-top: 1rem;
+        }
+        
+        /* 调整按钮组样式 */
+        .container-fluid {
+            padding: 1rem 0;
+        }
+        
+        /* 调整左右分栏比例 */
+        @media (min-width: 992px) {
+            .col-lg-4.photo-bg {
+                flex: 0 0 30%; /* 从33.33%减小到30% */
+                max-width: 30%;
+            }
+            
+            .col-lg-8.card {
+                flex: 0 0 70%; /* 从66.67%增加到70% */
+                max-width: 70%;
+            }
+        }
+
+        /* 美化导航按钮 */
+        .kz-nav-btn {
+            border-radius: 8px !important;  /* 添加圆角 */
+            transition: all 0.3s ease !important;  /* 添加过渡效果 */
+            font-weight: 500 !important;  /* 调整字体粗细 */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;  /* 更现代的字体 */
+            letter-spacing: 0.5px !important;  /* 增加字母间距 */
+            text-transform: uppercase !important;  /* 转为大写 */
+            font-size: 0.8rem !important;  /* 再减小字体大小 */
+            padding: 8px 10px !important;  /* 减小内边距 */
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1) !important;  /* 添加轻微阴影 */
+            margin: 0 3px !important;  /* 减小按钮间距 */
+            white-space: nowrap !important; /* 防止文本换行 */
+        }
+
+        /* 按钮悬停效果 */
+        .kz-nav-btn:hover {
+            transform: translateY(-2px) !important;  /* 悬停时轻微上浮 */
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15) !important;  /* 增强阴影 */
+        }
+
+        /* 按钮激活效果 */
+        .kz-nav-btn:active {
+            transform: translateY(1px) !important;  /* 点击时微下沉 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;  /* 减弱阴影 */
+        }
+
+        /* 为每个按钮设置个性化颜色 */
+        .kz-nav-btn.btn-primary {
+            background: linear-gradient(135deg, #6e8efb, #4a6cf7) !important;  /* 蓝色渐变 */
+            border: none !important;
+        }
+
+        .kz-nav-btn.btn-secondary {
+            background: linear-gradient(135deg, #525252, #333333) !important;  /* 黑色渐变 */
+            border: none !important;
+        }
+
+        .kz-nav-btn.btn-success {
+            background: linear-gradient(135deg, #28c76f, #1f9d55) !important;  /* 绿色渐变 */
+            border: none !important;
+        }
+
+        /* 调整按钮容器样式 */
+        .nav-buttons-row {
+            display: flex !important;
+            justify-content: space-between !important;
+            width: 100% !important;
+            padding: 0 !important;
+            margin: 1rem 0 !important;
+        }
+
+        .nav-button-col {
+            flex: 1 !important;
+            padding: 0 3px !important;
+            max-width: 33.333% !important;
+        }
+
+        /* 图标与文本间距 */
+        .kz-nav-btn i {
+            margin-right: 4px !important;
+        }
+
+        /* 隐藏 APlayer 播放列表按钮 */
+        .aplayer .aplayer-icon.aplayer-icon-menu {
+            display: none !important;
+        }
+        
+        /* 可选：调整控制栏布局，使其在隐藏列表按钮后更加平衡 */
+        .aplayer .aplayer-music {
+            padding-right: 15px !important;
+        }
+
+        /* 自定义语录样式 */
+        #hitokoto_text {
+            font-family: 'Georgia', 'Times New Roman', serif !important; /* 使用衬线字体 */
+            font-style: italic !important; /* 斜体 */
+            font-size: 1.05rem !important; /* 稍微大一点的字体大小 */
+            color: #555 !important; /* 深灰色而非黑色 */
+            line-height: 1.6 !important; /* 更宽松的行高 */
+            padding: 0.5rem 0 !important; /* 上下增加一些内边距 */
+            margin: 0.5rem 0 1rem !important; /* 调整外边距 */
+            letter-spacing: 0.02em !important; /* 微调字母间距 */
+            border-left: 3px solid #4a6cf7 !important; /* 左侧添加蓝色竖线 */
+            padding-left: 12px !important; /* 左侧添加内边距 */
+            position: relative !important; /* 为添加引号做准备 */
+        }
+        
+        /* 添加引号装饰 */
+        #hitokoto_text::before {
+            content: '"' !important;
+            font-size: 1.3rem !important;
+            color: #4a6cf7 !important;
+            margin-right: 3px !important;
+        }
+        
+        #hitokoto_text::after {
+            content: '"' !important;
+            font-size: 1.3rem !important;
+            color: #4a6cf7 !important;
+            margin-left: 3px !important;
+        }
+
+    </style>
+
+    <script>
+        // 音乐设置
+        let meting_music_api = "https://www.kezez.com/api/meting-api/";
+        let music_server = "netease"; 
+        let music_type = "playlist"; 
+        let music_id = "957733837"; 
+        let music_order = "random";
+        let music_mini = false; 
+        let music_fixed = false; 
+        let music_volume = 0.1; // 默认音量
+        let music_autoplay = false; 
+        let music_loop = "all"; 
+        
+        // 监听并重写APlayer初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 监听播放器创建事件
+            document.addEventListener('DOMNodeInserted', function(e) {
+                if (e.target.classList && e.target.classList.contains('aplayer')) {
+                    // 获取aplayer实例
+                    setTimeout(function() {
+                        var elements = document.getElementsByClassName('aplayer');
+                        for (var i = 0; i < elements.length; i++) {
+                            if (elements[i].aplayer) {
+                                // 设置音量
+                                elements[i].aplayer.volume(music_volume);
+                                console.log('已设置播放器' + i + '音量为', music_volume);
+                            }
+                        }
+                    }, 1000);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // 一言设置
+        // let hitokoto_api = "https://v1.hitokoto.cn"; // 一言API
+        let my_hitokoto_array = [
+            "楽园の端から君に闻かせよう,君たちの物语は祝福に満ちていると"
+        ];
+        
+        // 确保在DOM完全加载后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 确保jQuery已加载
+            if (typeof $ !== 'undefined') {
+                // 从自定义语录中随机选择一条显示
+                var randomIndex = Math.floor(Math.random() * my_hitokoto_array.length);
+                var hitokoto = my_hitokoto_array[randomIndex];
+                $('#hitokoto_text').html(hitokoto);
+            } else {
+                // jQuery未加载，使用原生JavaScript
+                var randomIndex = Math.floor(Math.random() * my_hitokoto_array.length);
+                var hitokoto = my_hitokoto_array[randomIndex];
+                document.getElementById('hitokoto_text').innerHTML = hitokoto;
+            }
+        });
+
+    </script>
+
+    <!-- end 自定义设置 -->
+</head>
+
+<body>
+    <div class="kz-video">
+        <video src="./static/video/lty.mp4" autoplay="autoplay" loop muted playsinline="" webkit-playsinline=""></video>
+    </div>
+    <div id="main" class="container">
+        <div class="row my-card justify-content-center">
+            <div class="col-lg-4 photo-bg"></div>
+            <div class="col-lg-8 card">
+                <!-- 大标题 -->
+                <h1>Rdc HomePage</h1>
+                <!-- 标题下的一段话 -->
+                <p>
+                    这里是xzh的个人主页,下方是我常用网站的链接,欢迎访问
+                </p>
+                <p id="hitokoto_text">:D 让我想想我该说些什么...</p>
+                
+                <div class="container-fluid p-0">
+                    <div class="row nav-buttons-row">
+                        <!-- 导航按钮组 -->
+                        <div class="nav-button-col">
+                            <button data-href="https://www.cnblogs.com/rdcamelot" data-title="Blog" data-window="pop" data-anim="4"
+                            data-area-w="80%" data-area-h="90%" data-shade="false"
+                            class="kz-nav-btn btn btn-primary w-100"><i class="fas fa-blog"></i> Blog</button>
+                        </div>
+                
+                        <div class="nav-button-col">
+                            <button data-href="https://github.com/rdcamelot" data-title="GitHub" data-window="newtab"
+                            data-anim="4" data-area-w="80%" data-area-h="90%" data-shade="false"
+                            class="kz-nav-btn btn btn-secondary w-100"><i class="fab fa-github"></i> GitHub</button>
+                        </div>
+                
+                        <div class="nav-button-col">
+                            <button data-href="mailto:rdlxylll@outlook.com"
+                            data-title="Email" data-window="pop" data-anim="4" data-area-w="80%" data-area-h="90%"
+                            data-shade="false" class="kz-nav-btn btn btn-success w-100"><i class="fas fa-envelope"></i> Mail</button>
+                        </div>
+                        <!-- end 导航按钮组 -->
+                    </div>
+                </div>
+
+                <!-- aplayer inner -->
+                <div id="aplayer-inner" class="aplayer"></div>
+                <!-- end aplayer inner -->
+                <ul class="social mt-1">
+                    <!-- 修改GitHub链接 -->
+                    <li><a href="https://github.com/rdcamelot"><i class="fab fa-github" aria-hidden="true"></i></a></li>
+                    
+                    <!-- 添加Codeforces链接 -->
+                    <li><a href="https://codeforces.com/profile/rdcamelot"><i class="fas fa-code" aria-hidden="true"></i></a></li>
+                    
+                    <!-- 修改X(Twitter)链接 -->
+                    <li><a href="https://twitter.com/rdcamelot"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                </ul>
+
+<!--
+                <footer>
+                    <p>Copyright 2018 - Now <a href="https://www.170601.xyz/" target="_blank">七六零一</a>
+                        <a href="http://beian.miit.gov.cn/" target="_blank">豫ICP备00000000号-1</a>
+                        <br>
+                        <a href="https://github.com/kaygb/KZHomePage" target="_blank" rel="">KZHomePage</a>
+                        Mod by
+                        <a href="https://github.com/kaygb" target="_blank" rel="">kaygb</a>
+                        <br>
+                        <a href="https://console.upyun.com/register/?invite=r1FdZxBoH" target="_blank"
+                            rel="nofollow"><img src="https://bu.dusays.com/2021/12/15/9991d2344d2ca.png"
+                                style="width:50px;"></a>
+                    </p>
+                </footer>
+-->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- aplayer -->
+    <div id="aplayer-fixed" class="aplayer"></div>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./static/APlayer-1.10.1/dist/APlayer.min.js"></script>
+    <script src="./static/Meting.min.js"></script>
+    <!-- end_aplayer -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script defer src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="./static/layer-v3.5.1/layer/layer.js"></script>
+
+    <script src="./static/main.js"></script>
+
+</html>
