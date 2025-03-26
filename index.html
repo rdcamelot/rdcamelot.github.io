@@ -72,19 +72,84 @@
             margin: 0; /* 移除外边距 */
         }
         
-        /* 修改卡片样式 - 缩小并添加圆角 */
+        /* 修改卡片样式 - 缩小并添加圆角*/
+
         .my-card {
-            max-width: 67%; /* 从80%减小到70% */
-            width: 67%; /* 从80%减小到70% */
-            height: auto;
-            max-height: 65vh; /* 从80vh减小到75vh */
+            max-width: 67%;
+            width: 67%;
+            height: 500px; /* 固定高度 */
+            max-height: 65vh; /* 限制最大高度 */
             margin: 0;
             display: flex;
             flex-direction: row;
             align-items: stretch;
-            border-radius: 12px; /* 增加圆角 */
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1); /* 更精致的阴影 */
-            overflow: hidden; /* 确保内部元素不超出圆角 */
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* 固定左侧图片区域的大小 */
+        @media (min-width: 992px) {
+            .col-lg-4.photo-bg {
+                flex: 0 0 30%;
+                max-width: 30%;
+                min-height: 100%; /* 确保填满卡片高度 */
+                height: 100%; /* 确保高度填满 */
+            }
+            
+            .col-lg-8.card {
+                flex: 0 0 70%;
+                max-width: 70%;
+                overflow: visible; /* 允许内容溢出，我们会为特定区域添加滚动 */
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        /* 设置文本内容区域为可滚动 */
+        .scrollable-content {
+            height: 80px; /* 固定高度，大约2-3行文字 */
+            overflow-y: auto; /* 添加垂直滚动条 */
+            margin-bottom: 1rem;
+            padding-right: 5px; /* 为滚动条留出空间 */
+            border-radius: 5px;
+            background-color: rgba(249, 249, 249, 0.5); /* 轻微背景色区分 */
+        }
+
+        /* 美化滚动条 */
+        .scrollable-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        /* 调整卡片内部布局 */
+        .card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 确保其他元素布局正确 */
+        .social {
+            margin-top: auto; /* 将社交图标推到底部 */
+        }
+
+        /* 确保hitokoto文本区域也有合适的大小 */
+        #hitokoto_text {
+            margin: 0.5rem 0;
+            flex-shrink: 0;
         }
         
         /* 为较小屏幕添加媒体查询 */
@@ -227,6 +292,85 @@
             margin-left: 3px !important;
         }
 
+        /* 优化卡片内部布局和空间利用 */
+        .card {
+            padding: 1rem 1.5rem !important; /* 减少内边距 */
+            justify-content: flex-start !important; /* 从顶部开始布局 */
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        /* 优化整体布局，减少所有元素的间距 */
+        h1 {
+            margin-top: 0 !important; 
+            margin-bottom: 0.8rem !important; /* 再次减少标题和内容之间的间距 */
+            font-size: 1.6rem !important;
+        }
+
+        /* 调整可滚动内容区域 */
+        .scrollable-content {
+            height: 65px !important;
+            margin-bottom: 0.4rem !important;
+            overflow-y: auto !important;
+        }
+
+        #hitokoto_text {
+            margin: 1.0rem 0 0.5rem !important; /* 进一步减少上下间距 */
+            padding: 0.2rem 0 !important; /* 减少内边距 */
+            font-size: 1rem !important; /* 稍微减小字体 */
+            line-height: 1.5 !important; /* 减小行高 */
+        }
+
+        /* 调整导航按钮组间距 */
+        .nav-buttons-row {
+            margin: 0.8rem 0 !important; /* 再减少上下边距 */
+        }
+
+        .container-fluid {
+            padding: 0.3rem 0 !important; /* 减少内边距 */
+        }
+
+        /* 修复音乐播放器显示问题 */
+        #aplayer-inner {
+            margin: 0.3rem 0 0.5rem !important; /* 调整上下边距 */
+            height: 90px !important; /* 固定高度 */
+            max-height: 90px !important;
+            overflow: hidden !important; /* 防止溢出 */
+        }
+
+        /* 确保APlayer正确显示 */
+        .aplayer {
+            margin: 0 !important;
+            box-shadow: none !important;
+        }
+
+        /* 处理社交图标区域，确保始终在底部 */
+        .social {
+            margin-top: auto !important; /* 这会推动社交图标到flex容器底部 */
+            padding-top: 0.2rem !important;
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* 优化社交图标尺寸 */
+        .social li a i {
+            font-size: 1.1rem !important; /* 稍微减小图标大小 */
+        }
+
+        /* 增加卡片内部弹性布局的灵活性 */
+        .col-lg-8.card {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important; /* 分散元素以利用空间 */
+        }
+
+        /* 创建一个flex容器包装内容区域，使其占据可用空间但允许社交图标固定在底部 */
+        .card-content-wrapper {
+            display: flex !important;
+            flex-direction: column !important;
+            flex: 1 !important;
+        }
+
     </style>
 
     <script>
@@ -298,13 +442,18 @@
     <div id="main" class="container">
         <div class="row my-card justify-content-center">
             <div class="col-lg-4 photo-bg"></div>
+            <!-- 在卡片内容部分修改HTML结构 -->
             <div class="col-lg-8 card">
                 <!-- 大标题 -->
                 <h1>Rdc HomePage</h1>
-                <!-- 标题下的一段话 -->
-                <p>
-                    这里是xzh的个人主页,下方是我常用网站的链接,欢迎访问
-                </p>
+                
+                <!-- 标题下的一段话 - 添加可滚动容器 -->
+                <div class="scrollable-content">
+                    <p>
+                        这里是xzh的个人主页,下方是我常用网站的链接,欢迎访问
+                    </p>
+                </div>
+                
                 <p id="hitokoto_text">:D 让我想想我该说些什么...</p>
                 
                 <div class="container-fluid p-0">
@@ -333,8 +482,9 @@
 
                 <!-- aplayer inner -->
                 <div id="aplayer-inner" class="aplayer"></div>
+
                 <!-- end aplayer inner -->
-                <ul class="social mt-1">
+                <ul class="social">
                     <!-- 修改GitHub链接 -->
                     <li><a href="https://github.com/rdcamelot"><i class="fab fa-github" aria-hidden="true"></i></a></li>
                     
@@ -345,21 +495,6 @@
                     <li><a href="https://twitter.com/rdcamelot"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
                 </ul>
 
-<!--
-                <footer>
-                    <p>Copyright 2018 - Now <a href="https://www.170601.xyz/" target="_blank">七六零一</a>
-                        <a href="http://beian.miit.gov.cn/" target="_blank">豫ICP备00000000号-1</a>
-                        <br>
-                        <a href="https://github.com/kaygb/KZHomePage" target="_blank" rel="">KZHomePage</a>
-                        Mod by
-                        <a href="https://github.com/kaygb" target="_blank" rel="">kaygb</a>
-                        <br>
-                        <a href="https://console.upyun.com/register/?invite=r1FdZxBoH" target="_blank"
-                            rel="nofollow"><img src="https://bu.dusays.com/2021/12/15/9991d2344d2ca.png"
-                                style="width:50px;"></a>
-                    </p>
-                </footer>
--->
             </div>
         </div>
 
