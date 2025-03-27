@@ -1,0 +1,274 @@
+/* 原html文件中 
+<!-- 自定义设置 -->
+    <style> 
+    </style>
+中的内容*/
+
+/* 基本样式设置 */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("../static/images/marlin.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    /* 使用弹性布局确保内容垂直居中 */
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    min-height: 100vh;
+}
+
+.photo-bg {
+    background-image: url("../static/images/3.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.kz-video {
+    display: none; 
+}
+
+/* 卡片样式 */
+.card {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    height: 100%;  /* 确保卡片填满父容器高度 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 从顶部开始布局 */
+    padding: 1rem 1.5rem; /* 减少内边距 */
+}
+
+/* 主容器样式 */
+#main.container {
+    width: 100%;
+    height: 100vh; /* 使用视口高度单位 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* 移除内边距 */
+    margin: 0; /* 移除外边距 */
+}
+
+/* 修改卡片样式 - 缩小并添加圆角*/
+.my-card {
+    max-width: 67%;
+    width: 67%;
+    height: 500px; /* 固定高度 */
+    max-height: 65vh; /* 限制最大高度 */
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* 固定左侧图片区域的大小 */
+@media (min-width: 992px) {
+    .col-lg-4.photo-bg {
+        flex: 0 0 30%;
+        max-width: 30%;
+        min-height: 100%; /* 确保填满卡片高度 */
+        height: 100%; /* 确保高度填满 */
+    }
+    
+    .col-lg-8.card {
+        flex: 0 0 70%;
+        max-width: 70%;
+        overflow: visible; /* 允许内容溢出，我们会为特定区域添加滚动 */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* 分散元素以利用空间 */
+    }
+}
+
+/* 设置文本内容区域为可滚动 */
+.scrollable-content {
+    height: 65px; /* 固定高度，大约2-3行文字 */
+    overflow-y: auto; /* 添加垂直滚动条 */
+    margin-bottom: 0.4rem;
+    padding-right: 5px; /* 为滚动条留出空间 */
+    border-radius: 5px;
+    background-color: rgba(249, 249, 249, 0.5); /* 轻微背景色区分 */
+}
+
+/* 美化滚动条 */
+.scrollable-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* 确保其他元素布局正确 */
+.social {
+    margin-top: auto; /* 将社交图标推到底部 */
+    padding-top: 0.2rem;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* 确保hitokoto文本区域也有合适的大小 */
+#hitokoto_text {
+    margin: 1.0rem 0 0.5rem; /* 进一步减少上下间距 */
+    padding: 0.2rem 0; /* 减少内边距 */
+    font-size: 1rem; /* 稍微减小字体 */
+    line-height: 1.5; /* 减小行高 */
+    font-family: 'Georgia', 'Times New Roman', serif; /* 使用衬线字体 */
+    font-style: italic; /* 斜体 */
+    color: #555; /* 深灰色而非黑色 */
+    letter-spacing: 0.02em; /* 微调字母间距 */
+    border-left: 3px solid #4a6cf7; /* 左侧添加蓝色竖线 */
+    padding-left: 12px; /* 左侧添加内边距 */
+    position: relative; /* 为添加引号做准备 */
+}
+
+/* 添加引号装饰 */
+#hitokoto_text::before {
+    content: '"';
+    font-size: 1.3rem;
+    color: #4a6cf7;
+    margin-right: 3px;
+}
+
+#hitokoto_text::after {
+    content: '"';
+    font-size: 1.3rem;
+    color: #4a6cf7;
+    margin-left: 3px;
+}
+
+/* 为较小屏幕添加媒体查询 */
+@media (max-height: 700px) {
+    .my-card {
+        max-height: 85vh;
+    }
+}
+
+/* 优化整体布局，减少所有元素的间距 */
+h1 {
+    margin-top: 0; 
+    margin-bottom: 0.8rem; /* 再次减少标题和内容之间的间距 */
+    font-size: 1.6rem;
+}
+
+/* 调整导航按钮组间距 */
+.nav-buttons-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    margin: 0.8rem 0; /* 再减少上下边距 */
+}
+
+.container-fluid {
+    padding: 0.3rem 0; /* 减少内边距 */
+}
+
+/* 美化导航按钮 */
+.kz-nav-btn {
+    border-radius: 8px;  /* 添加圆角 */
+    transition: all 0.3s ease;  /* 添加过渡效果 */
+    font-weight: 500;  /* 调整字体粗细 */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  /* 更现代的字体 */
+    letter-spacing: 0.5px;  /* 增加字母间距 */
+    text-transform: uppercase;  /* 转为大写 */
+    font-size: 0.8rem;  /* 再减小字体大小 */
+    padding: 8px 10px;  /* 减小内边距 */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);  /* 添加轻微阴影 */
+    margin: 0 3px;  /* 减小按钮间距 */
+    white-space: nowrap; /* 防止文本换行 */
+}
+
+/* 按钮悬停效果 */
+.kz-nav-btn:hover {
+    transform: translateY(-2px);  /* 悬停时轻微上浮 */
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);  /* 增强阴影 */
+}
+
+/* 按钮激活效果 */
+.kz-nav-btn:active {
+    transform: translateY(1px);  /* 点击时微下沉 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* 减弱阴影 */
+}
+
+/* 为每个按钮设置个性化颜色 */
+.kz-nav-btn.btn-primary {
+    background: linear-gradient(135deg, #6e8efb, #4a6cf7);  /* 蓝色渐变 */
+    border: none;
+}
+
+.kz-nav-btn.btn-secondary {
+    background: linear-gradient(135deg, #525252, #333333);  /* 黑色渐变 */
+    border: none;
+}
+
+.kz-nav-btn.btn-success {
+    background: linear-gradient(135deg, #28c76f, #1f9d55);  /* 绿色渐变 */
+    border: none;
+}
+
+.nav-button-col {
+    flex: 1;
+    padding: 0 3px;
+    max-width: 33.333%;
+}
+
+/* 图标与文本间距 */
+.kz-nav-btn i {
+    margin-right: 4px;
+}
+
+/* 隐藏 APlayer 播放列表按钮 */
+.aplayer .aplayer-icon.aplayer-icon-menu {
+    display: none;
+}
+
+/* 可选：调整控制栏布局，使其在隐藏列表按钮后更加平衡 */
+.aplayer .aplayer-music {
+    padding-right: 15px;
+}
+
+/* 修复音乐播放器显示问题 */
+#aplayer-inner {
+    margin: 0.3rem 0 0.5rem; /* 调整上下边距 */
+    height: 90px; /* 固定高度 */
+    max-height: 90px;
+    overflow: hidden; /* 防止溢出 */
+}
+
+/* 确保APlayer正确显示 */
+.aplayer {
+    margin: 0;
+    box-shadow: none;
+}
+
+/* 优化社交图标尺寸 */
+.social li a i {
+    font-size: 1.1rem; /* 稍微减小图标大小 */
+}
+
+/* 创建一个flex容器包装内容区域，使其占据可用空间但允许社交图标固定在底部 */
+.card-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
