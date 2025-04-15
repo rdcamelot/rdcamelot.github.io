@@ -20,7 +20,23 @@
         "ISLAND",
         "初雪樱",
         "沙耶之歌",
-        "月姬"
+        "月姬",
+        "人狼村之谜",
+        "蛇之命"
+
+        ,
+        "苍之瞳的少女",
+        "高达SEED",
+        "高达UC",
+        "ACCA13区监察课",
+        "星际牛仔",
+        "攻克机动队",
+        "流浪武士",
+        "EVA",
+        "Fate/Zero",
+        "Fate/Grand Order",
+        "Fate/Apocrypha",
+        "Fate/Extra Last Encore",
     ];
     
     // 定义更柔和的颜色

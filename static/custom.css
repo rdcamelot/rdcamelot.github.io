@@ -272,3 +272,15 @@ h1 {
     flex-direction: column;
     flex: 1;
 }
+
+/* 添加悬停时的3D视差效果 */
+
+/* 照片悬停效果 */
+.photo-bg {
+    transition: transform 0.5s ease;
+    overflow: hidden;
+}
+
+.my-card:hover .photo-bg {
+    transform: scale(1.02);
+}
