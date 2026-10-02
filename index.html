@@ -1,174 +1,190 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- 浏览器标签上显示的网站标题 -->
-    <title>rdcamelot个人主页</title>
-    <!-- 网站介绍 -->
-    <meta name="description" content="">
-    <!-- 网站关键字 -->
-    <meta name="keywords" content="rdcamelot">
-    <!-- 浏览器标签上显示的图标 -->
-    <!-- <link rel="icon" type="image/ico" href="//sdn.geekzu.org/avatar/4cc893d113dd74ceca73f9863f2c5446/"> -->
-    <!-- 浏览器标签上显示的图标 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>rdcamelot | Home</title>
+    <meta name="description" content="rdcamelot 的个人主页：算法、工程、学习资料与学术入口。">
+    <meta name="keywords" content="rdcamelot, personal homepage, algorithms, programming, academic">
+    <meta name="theme-color" content="#10202f">
+    <meta property="og:title" content="rdcamelot | Home">
+    <meta property="og:description" content="算法、工程、学习资料与学术入口。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./static/images/marlin.png">
     <link rel="icon" type="image/png" href="./static/images/icon.jpg">
-    <!-- 样式文件 -->
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css">
-    <link rel="stylesheet" href="./static/style.css?v=1.2.0">
-    <link rel="stylesheet" href="./static/APlayer-1.10.1/dist/APlayer.min.css">
-    <!-- 添加自定义样式表 -->
-    <link rel="stylesheet" href="./static/custom.css?v=1.0.0">
-
-    <!-- 自定义设置 -->
-    <style>
-        /* 移动到了custom.css中 */
-        /* 如需添加临时样式，可以在此处添加 */
-    </style>
-
+    <link rel="preload" href="./static/images/marlin.png" as="image">
     <script>
-        // 音乐设置
-        let meting_music_api = "https://www.kezez.com/api/meting-api/";
-        let music_server = "netease"; 
-        let music_type = "playlist"; 
-        let music_id = "957733837"; 
-        let music_order = "random";
-        let music_mini = false; 
-        let music_fixed = false; 
-        let music_volume = 0.1; // 默认音量
-        let music_autoplay = false; 
-        let music_loop = "all"; 
-        
-        // 监听并重写APlayer初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            // 监听播放器创建事件
-            document.addEventListener('DOMNodeInserted', function(e) {
-                if (e.target.classList && e.target.classList.contains('aplayer')) {
-                    // 获取aplayer实例
-                    setTimeout(function() {
-                        var elements = document.getElementsByClassName('aplayer');
-                        for (var i = 0; i < elements.length; i++) {
-                            if (elements[i].aplayer) {
-                                // 设置音量
-                                elements[i].aplayer.volume(music_volume);
-                                console.log('已设置播放器' + i + '音量为', music_volume);
-                            }
-                        }
-                    }, 1000);
-                }
-            });
-        });
-    </script>
-
-    <script>
-        // 一言设置
-        // let hitokoto_api = "https://v1.hitokoto.cn"; // 一言API
-        let my_hitokoto_array = [
-            "楽园の端から君に闻かせよう,君たちの物语は祝福に満ちていると"
-        ];
-        
-        // 确保在DOM完全加载后执行
-        document.addEventListener('DOMContentLoaded', function() {
-            // 确保jQuery已加载
-            if (typeof $ !== 'undefined') {
-                // 从自定义语录中随机选择一条显示
-                var randomIndex = Math.floor(Math.random() * my_hitokoto_array.length);
-                var hitokoto = my_hitokoto_array[randomIndex];
-                $('#hitokoto_text').html(hitokoto);
-            } else {
-                // jQuery未加载，使用原生JavaScript
-                var randomIndex = Math.floor(Math.random() * my_hitokoto_array.length);
-                var hitokoto = my_hitokoto_array[randomIndex];
-                document.getElementById('hitokoto_text').innerHTML = hitokoto;
+        (function() {
+            try {
+                document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+            } catch (error) {
+                document.documentElement.dataset.theme = "dark";
             }
-        });
-
+        })();
     </script>
-
-    <!-- end 自定义设置 -->
+    <link rel="stylesheet" href="./static/home.css?v=2.0.0">
 </head>
 
-<body>
-    <div class="kz-video">
-        <video src="./static/video/lty.mp4" autoplay="autoplay" loop muted playsinline="" webkit-playsinline=""></video>
-    </div>
-    <div id="main" class="container">
-        <div class="row my-card justify-content-center">
-            <div class="col-lg-4 photo-bg"></div>
-            <!-- 在卡片内容部分修改HTML结构 -->
-            <div class="col-lg-8 card">
-                <!-- 大标题 -->
-                <h1>Rdc HomePage</h1>
-                
-                <!-- 标题下的一段话 - 添加可滚动容器 -->
-                <div class="scrollable-content">
-                    <p>
-                        这里是xzh的个人主页,下方是我常用网站的链接,欢迎访问
-                    </p>
-                </div>
-                
-                <p id="hitokoto_text">:D 让我想想我该说些什么...</p>
-                
-                <div class="container-fluid p-0">
-                    <div class="row nav-buttons-row">
-                        <!-- 导航按钮组 -->
-                        <div class="nav-button-col">
-                            <button data-href="https://www.cnblogs.com/rdcamelot" data-title="Blog" data-window="newtab"
-                            data-area-w="80%" data-area-h="90%" data-shade="false"
-                            class="kz-nav-btn btn btn-primary w-100"><i class="fas fa-blog"></i> Blog</button>
-                        </div>
-                
-                        <div class="nav-button-col">
-                            <button data-href="https://github.com/rdcamelot" data-title="GitHub" data-window="newtab"
-                            data-anim="4" data-area-w="80%" data-area-h="90%" data-shade="false"
-                            class="kz-nav-btn btn btn-secondary w-100"><i class="fab fa-github"></i> GitHub</button>
-                        </div>
-                
-                        <div class="nav-button-col">
-                            <button data-href="mailto:rdlxylll@outlook.com"
-                            data-title="Email" data-window="pop" data-anim="4" data-area-w="80%" data-area-h="90%"
-                            data-shade="false" class="kz-nav-btn btn btn-success w-100"><i class="fas fa-envelope"></i> Mail</button>
-                        </div>
-                        <!-- end 导航按钮组 -->
-                    </div>
-                </div>
+<body class="home-page">
+    <a class="skip-link" href="#content">跳到内容</a>
 
-                <!-- aplayer inner -->
-                <div id="aplayer-inner" class="aplayer"></div>
-
-                <!-- end aplayer inner -->
-                <ul class="social">
-                    <!-- 修改GitHub链接 -->
-                    <li><a href="https://github.com/rdcamelot"><i class="fab fa-github" aria-hidden="true"></i></a></li>
-                    
-                    <!-- 添加Codeforces链接 -->
-                    <li><a href="https://codeforces.com/profile/rdcamelot"><i class="fas fa-code" aria-hidden="true"></i></a></li>
-                    
-                    <!-- 修改X(Twitter)链接 -->
-                    <li><a href="https://twitter.com/rdcamelot"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                </ul>
-
+    <header class="site-header" data-header>
+        <nav class="topbar" aria-label="主导航">
+            <a class="brand" href="./index.html" aria-label="rdcamelot home">
+                <span class="brand-mark">R</span>
+                <span>rdcamelot</span>
+            </a>
+            <div class="nav-links" aria-label="页面导航">
+                <a href="#about">About</a>
+                <a href="#focus">Interests</a>
+                <a href="#routes">Links</a>
+                <a href="./academic.html">Academic</a>
             </div>
-        </div>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换黑白主题">
+                <span data-theme-label>Light</span>
+            </button>
+        </nav>
+    </header>
 
-    </div>
+    <main id="content">
+        <section class="hero" id="home" aria-labelledby="home-title">
+            <div class="hero-shade"></div>
+            <div class="hero-content">
+                <p class="eyebrow">Personal Homepage</p>
+                <h1 id="home-title">rdcamelot</h1>
+                <p class="hero-subtitle hero-quote" lang="ja">
+                    楽園の端から君に聞かせよう<br>
+                    君たちの物語は祝福に満ちていると
+                </p>
+                <div class="hero-actions" aria-label="主要链接">
+                    <a class="button button-primary" href="https://github.com/rdcamelot" target="_blank" rel="noreferrer">
+                        GitHub
+                    </a>
+                    <a class="button button-secondary" href="./academic.html">
+                        Academic
+                    </a>
+                    <a class="button button-ghost" href="https://www.cnblogs.com/rdcamelot" target="_blank" rel="noreferrer">
+                        Blog
+                    </a>
+                </div>
+                <dl class="hero-facts" aria-label="个人主页摘要">
+                    <div>
+                        <dt>Interests</dt>
+                        <dd>AI · ACG</dd>
+                    </div>
+                    <div>
+                        <dt>Status</dt>
+                        <dd>Undergraduate Student</dd>
+                    </div>
+                    <div>
+                        <dt>Base</dt>
+                        <dd>Shanghai</dd>
+                    </div>
+                </dl>
+            </div>
+            <a class="scroll-cue" href="#about" aria-label="查看简介">
+                <span></span>
+            </a>
+        </section>
 
-    <!-- aplayer -->
-    <div id="aplayer-fixed" class="aplayer"></div>
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="./static/APlayer-1.10.1/dist/APlayer.min.js"></script>
-    <script src="./static/Meting.min.js"></script>
-    <!-- end_aplayer -->
-    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
-    <script defer src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="./static/layer-v3.5.1/layer/layer.js"></script>
+        <section class="intro-band" id="about" aria-labelledby="intro-title">
+            <div class="section-inner intro-grid">
+                <div>
+                    <p class="section-kicker">Name</p>
+                    <h2 id="intro-title">RdCamelot</h2>
+                </div>
+                <p>
+                    rdcamelot 取自 FGO 中 Morgan 的宝具 <ruby class="noble-phantasm" lang="ja">はや辿り着けぬ理想郷<rp>（</rp><rt lang="en">Roadless Camelot</rt><rp>）</rp></ruby>。Camelot 是亚瑟王传说中的王城，也常被视作理想国的象征；
+                    而 Roadless Camelot 则是指一座道路断绝、已然遥远的理想乡。但即使卡美洛终不可及，彼方应当存在，也必须存在；纵使它在时间中远去，仍心怀向往，仍忆及当初。
+                </p>
+            </div>
+        </section>
 
-    <script src="./static/main.js"></script>
-    
-    <!-- 添加点击特效脚本 - 在最后加载 -->
-    <script src="./static/click-effect.js"></script>
+        <section class="routes-section" id="routes" aria-labelledby="routes-title">
+            <div class="section-inner">
+                <div class="section-heading">
+                    <p class="section-kicker">Links</p>
+                    <h2 id="routes-title">主要入口</h2>
+                </div>
+
+                <div class="route-grid">
+                    <a class="route-card" href="https://www.cnblogs.com/rdcamelot" target="_blank" rel="noreferrer">
+                        <span class="route-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M5 4.5h14v15H5z"></path>
+                                <path d="M8 8h8"></path>
+                                <path d="M8 12h8"></path>
+                                <path d="M8 16h5"></path>
+                            </svg>
+                        </span>
+                        <span>
+                            <strong>Blog</strong>
+                            <small>题解、笔记</small>
+                        </span>
+                    </a>
+
+                    <a class="route-card" href="https://github.com/rdcamelot" target="_blank" rel="noreferrer">
+                        <span class="route-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 19c-4 1.5-4-2-5-2.5"></path>
+                                <path d="M15 22v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.2a11.6 11.6 0 0 0-6.2 0C6.6 3.8 5.6 4.1 5.6 4.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.2 10.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V22"></path>
+                            </svg>
+                        </span>
+                        <span>
+                            <strong>GitHub</strong>
+                            <small>代码仓库与项目更新</small>
+                        </span>
+                    </a>
+
+                    <a class="route-card route-card-accent" href="./academic.html">
+                        <span class="route-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                <path d="M8 7h7"></path>
+                                <path d="M8 11h8"></path>
+                            </svg>
+                        </span>
+                        <span>
+                            <strong>Academic</strong>
+                            <small>研究兴趣、项目和论文入口</small>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="focus-section" id="focus" aria-labelledby="focus-title">
+            <div class="section-inner">
+                <div class="section-heading">
+                    <p class="section-kicker">Interests</p>
+                    <h2 id="focus-title">兴趣与关注</h2>
+                </div>
+
+                <div class="focus-grid">
+                    <article class="focus-card">
+                        <h3>AI & Algorithms</h3>
+                        <p>研究兴趣主要围绕人工智能。算竞半退役，偶尔还会看些算法题。</p>
+                    </article>
+                    <article class="focus-card">
+                        <h3>ACG & Music</h3>
+                        <p>老番涉猎较多，新番随缘观看中。音乐以日语流行和动漫相关为主。</p>
+                    </article>
+                    <article class="focus-card">
+                        <h3>Games</h3>
+                        <p>主玩 FGO，Galgame和其他二游不时游玩，FPS、魂类、音游低手。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© <span data-year></span> rdcamelot. Built as a static GitHub Pages homepage.</p>
+    </footer>
+
+    <script src="./static/home.js?v=2.0.0"></script>
 </body>
 
 </html>
