@@ -1,4 +1,4 @@
-
+  @import url("./fonts/noto-sans-sc/350.css") screen and (max-width: 640px);
   :root { color-scheme: dark; }
   :root[data-theme="light"] { color-scheme: light; }
   body { margin: 0; }
@@ -64,6 +64,12 @@
     #academic-page .hp-header::after { inset-inline: 20px; }
     #academic-page .hp-main { width: calc(100% - 56px); }
     #academic-page .hp-profile { grid-template-columns: 124px minmax(0, 1fr); gap: 30px; }
+  }
+  @media (max-width: 640px) {
+    #academic-page .hp-nav a { min-width: 44px; justify-content: center; }
+    #academic-page .hp-prose { font-family: "Noto Sans SC Web", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 15px; line-height: 1.85; }
+    #academic-page .hp .hp-prose p { font-weight: 350; }
+    #academic-page .hp-prose p + p { margin-top: 16px; }
   }
   @media (max-width: 560px) {
     #academic-page .hp-header { padding: 8px 16px; gap: 8px; flex-wrap: wrap; }
